@@ -352,10 +352,10 @@ class TransformerOracle(TensorflowOracle):
             input_key = ("input_ids" if self.feature_extractor
                          .is_discrete(self.internal_dataset)
                          else "inputs_embeds")
-        elif isinstance(training, DiscreteDataset):
-            input_key = "input_ids"
-        else:
-            input_key = "inputs_embeds"
+        # elif isinstance(training, DiscreteDataset):
+        input_key = "input_ids"
+        # else:
+        #     input_key = "inputs_embeds"
 
         # call the model's predict function to generate predictions
         return (model if model else self.params["model"])\
