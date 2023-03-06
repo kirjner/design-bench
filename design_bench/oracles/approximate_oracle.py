@@ -6,6 +6,7 @@ import numpy as np
 import pickle as pkl
 import abc
 import zipfile
+import io
 
 
 class ApproximateOracle(OracleBuilder, abc.ABC):
@@ -391,15 +392,15 @@ class ApproximateOracle(OracleBuilder, abc.ABC):
 
             # read the validation rank correlation from the zip file
             with zip_archive.open('rank_correlation.npy', "r") as file:
-                rank_correlation = np.loads(file.read())
+                rank_correlation = np.load(io.BytesIO(file.read()), allow_pickle=True)
 
             # read the validation parameters from the zip file
             with zip_archive.open('split_kwargs.pkl', "r") as file:
-                split_kwargs = pkl.loads(file.read())
+                split_kwargs = pkl.load(file)
 
             # read the model parameters from the zip file
             with zip_archive.open('model_kwargs.pkl', "r") as file:
-                model_kwargs = pkl.loads(file.read())
+                model_kwargs = pkl.load(file)
 
         # return the final model and its training parameters
         return dict(model=model, rank_correlation=rank_correlation,
