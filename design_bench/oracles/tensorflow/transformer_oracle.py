@@ -1,7 +1,8 @@
 from design_bench.oracles.tensorflow.tensorflow_oracle import TensorflowOracle
 from design_bench.datasets.discrete_dataset import DiscreteDataset
 import tensorflow as tf
-import tensorflow.keras as keras
+from tensorflow import keras as keras
+from keras import layers as layers
 import tempfile
 import math
 import numpy as np

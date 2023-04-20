@@ -101,7 +101,6 @@ def direct_download(download_target, disk_target):
         or an error was encountered when False (such as a 404 error)
 
     """
-
     response = requests.get(download_target, allow_redirects=True)
     valid_response = response.status_code < 400
     if valid_response:

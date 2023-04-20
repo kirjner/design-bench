@@ -16,6 +16,7 @@ SHARD_PATTERN = re.compile(r'(.+)-(\w)-(\d+).npy$')
 # this is used to import data set classes dynamically
 def import_name(name):
     mod_name, attr_name = name.split(":")
+    print(mod_name, attr_name)
     return getattr(importlib.import_module(mod_name), attr_name)
 
 
